@@ -48,15 +48,16 @@ const reducer = (state, action) => {
 
     case "DECREMENT":
       let decArr = [...state];
-      decArr.find((food, index) => {
-        if (food.tempId === action.tempId) {
-          decArr[index] = {
-            ...food,
-            qty: parseInt(food.qty) - 1,
-            price: food.price - action.unitPrice,
-          };
-        }
-      });
+      // decArr.find((food, index) => {
+      // if (food.tempId === action.tempId) {
+      const food = { ...state[action.index] };
+      decArr[action.index] = {
+        ...food,
+        qty: parseInt(food.qty) - 1,
+        price: food.price - action.unitPrice,
+      };
+      // }
+      // });
       return decArr;
 
     case "DROP":
