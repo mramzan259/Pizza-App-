@@ -4,23 +4,42 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "../utils/ContextReducer";
+import { useRouter } from "next/navigation";
+import { deleteCookies } from "../app/actions/deleteCookies";
+
+// import jwt from "jsonwebtoken";
 
 function Navbar() {
   const [mounted, setMounted] = useState(false);
   const { state } = useContext(CartContext);
-  const { theme, setTheme } = useTheme("light");
+  const { theme, setTheme } = useTheme("dark");
+
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const handleLogout = async (event) => {
+    // event.preventDefault(); // Prevents immediate navigation
+    await deleteCookies(); // Call the server action
+    localStorage.removeItem("userEmail");
+    localStorage.removeItem("token");
+    localStorage.removeItem("isAdmin");
+
+    router.push("/login");
+  };
+
   if (!mounted) return null;
 
+  console.log("============1");
+
   return (
-    <header className="text-white-100 sticky top-0 z-50 bg-gradient-to-r from-indigo-700 via-violet-700 to-orange-700 body-font">
-      <div className="container mx-auto flex flex-wrap  p-3 flex-col md:flex-row items-center">
+    <header className="text-black sticky top-0 z-50 bg-white body-font dark:bg-black/60 dark:text-white">
+      <div className="container mx-auto flex flex-wrap  p-1 flex-col md:flex-row items-center">
         <Link
           href={"/"}
-          className="flex title-font font-extrabold items-center  uppercase text-gray-100"
+          className="flex title-font font-extrabold items-center  uppercase "
         >
           <Image alt="Navbar Logo" src={"/Pizza.svg"} width={60} height={60} />
           <p className="leading-5 text-xl mx-2">Pizza Wizza</p>
@@ -29,7 +48,7 @@ function Navbar() {
         <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
           <Link
             href={"/cart"}
-            className="text-white mr-5 cursor-pointer hover:text-gray-200 flex items-center"
+            className=" mr-5 cursor-pointer hover:text-[#85c0f5] flex items-center"
           >
             Cart
             <svg
@@ -52,10 +71,11 @@ function Navbar() {
           </Link>
           {localStorage.getItem("token") ? (
             <>
-              {JSON.parse(localStorage.getItem("isAdmin")) === true ? (
+              {/* {isAdmin ? ( */}
+              {localStorage.getItem("isAdmin") === "true" && (
                 <Link
                   href={"/admin"}
-                  className="text-white mr-5 cursor-pointer hover:text-gray-200 flex items-center"
+                  className=" mr-5 cursor-pointer hover:text-[#85c0f5] flex items-center"
                 >
                   Admin
                   <svg
@@ -73,10 +93,10 @@ function Navbar() {
                     />
                   </svg>
                 </Link>
-              ) : null}
+              )}
               <Link
-                href={"/orders"}
-                className="text-white mr-5 cursor-pointer hover:text-gray-200 flex items-center"
+                href={"/myOrders"}
+                className=" mr-5 cursor-pointer hover:text-[#85c0f5] flex items-center"
               >
                 My Orders
                 <svg
@@ -94,13 +114,10 @@ function Navbar() {
                   />
                 </svg>
               </Link>
-              <Link
-                href={"/login"}
-                onClick={() => {
-                  localStorage.removeItem("token");
-                  localStorage.removeItem("userEmail");
-                }}
-                className="text-white mr-5 cursor-pointer hover:text-gray-200 flex items-center"
+              <button
+                // href={"/login"}
+                onClick={handleLogout}
+                className=" mr-5 cursor-pointer hover:text-red-400 flex items-center"
               >
                 Logout
                 <svg
@@ -117,7 +134,7 @@ function Navbar() {
                     d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
                   />
                 </svg>
-              </Link>
+              </button>
             </>
           ) : (
             <>

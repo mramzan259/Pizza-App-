@@ -23,11 +23,8 @@ function Cart() {
     ) {
       router.push("/login");
     } else {
-      await fetch("api/ordersData", {
+      await fetch("/api/Checkout", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify({
           order_data: state,
           email: userEmail,
@@ -354,7 +351,7 @@ function Cart() {
                     </div>
                     <button
                       onClick={handleCheckOut}
-                      className="border dark:border-gray-400 border-gray-900 rounded p-2 bg-gradient-to-r from-indigo-700 via-violet-700 to-orange-700  hover:text-gray-100 "
+                      className="border cursor-pointer dark:border-gray-400 border-gray-900 rounded p-2 bg-gradient-to-r from-indigo-700 via-violet-700 to-orange-700  hover:text-gray-100 "
                     >
                       Check Out
                     </button>

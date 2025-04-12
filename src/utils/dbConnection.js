@@ -19,7 +19,6 @@ export async function connectToDatabase() {
   }
 
   try {
-    
     if (!cached.promise) {
       cached.promise = mongoose.connect(MONGODB_URI);
     }

@@ -38,6 +38,7 @@ function Card(props) {
         qty: qty,
         priceOption: size,
         img: data.img,
+        foodCategory : data.category,
       });
       console.log(state);
     }
@@ -57,7 +58,7 @@ function Card(props) {
   return (
     <div className="box dark:hover:scale-100">
       <div className="w-80 rounded-lg bg-white overflow-hidden dark:bg-black border-gradient">
-        <Link href={`/${data["_id"]}`}>
+        <Link href={`/detail/${data["_id"]}`}>
           {/* <Link href={{ pathname: "/[foodID]" }} as={`Item/${data["_id"]}`}> */}
           <div className="relative w-full h-60">
             <Image
@@ -68,7 +69,7 @@ function Card(props) {
             />
           </div>
           <div className="p-4">
-            <div className="font-bold mb-2 text-xl uppercase"> {data.name}</div>
+            <div className="custom-ellipsis font-bold mb-2 text-xl uppercase"> {data.name}</div>
             <p className=" short_description text-gray-700 dark:text-gray-400 text-base">
               {data.description}
             </p>

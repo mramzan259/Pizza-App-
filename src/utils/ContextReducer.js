@@ -13,6 +13,7 @@ const reducer = (state, action) => {
           qty: action.qty,
           size: action.priceOption,
           img: action.img,
+          category: action.foodCategory,
         },
       ];
     case "UPDATE":
@@ -63,6 +64,7 @@ const reducer = (state, action) => {
     case "DROP":
       let emptyArr = [];
       return emptyArr;
+
     default:
       console.log("Action type");
   }
@@ -72,6 +74,7 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, []);
+
   const contextValue = useMemo(() => {
     return { state, dispatch };
   }, [state, dispatch]);

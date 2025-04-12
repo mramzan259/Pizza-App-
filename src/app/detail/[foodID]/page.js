@@ -37,7 +37,7 @@ const Item = async ({ params }) => {
       <div className="container border-gradient max-w-md p-6 md:p-8 mb-16 mx-auto  flex space-y-4 flex-col items-center justify-center">
         <div className="relative w-full h-96 rounded-lg lg:w-96">
           <Image
-            src={data.img}
+            src={data?.img}
             className="rounded-lg"
             layout="fill"
             objectFit="cover"
@@ -46,10 +46,10 @@ const Item = async ({ params }) => {
         </div>
 
         <div className="font-extrabold mb-2 text-base md:text-2xl uppercase ">
-          {data.title}
+          {data?.name}
         </div>
         <div className=" max-w-sm text-base md:text-lg text-gray-700 dark:text-gray-400">
-          {data.body}
+          {data?.description}
         </div>
       </div>
     </div>

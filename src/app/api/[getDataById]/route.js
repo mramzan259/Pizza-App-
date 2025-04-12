@@ -1,5 +1,5 @@
 import { connectToDatabase } from "@/src/utils/dbConnection";
-import pizzaData from "@/src/utils/PizzaDataSchema";
+import pizzaData from "@/src/models/PizzaDataSchema";
 import { NextResponse } from "next/server";
 
 export const GET = async (req, { params }) => {

@@ -103,8 +103,20 @@ body {
   white-space: pre-wrap; /* let the text wrap preserving spaces */
 }
 
+.custom-ellipsis {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1; /* start showing ellipsis when 3rd line is reached */
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  display: none;
 }
