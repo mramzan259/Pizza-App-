@@ -20,7 +20,7 @@ A full-stack Pizza Ordering web application built using **Next.js App Router**, 
 - **MongoDB**
 - **JWT/Auth**
 
-🔐 Admin Access
+## 🔐 Admin Access
 
 Admin functionalities include:
 
@@ -31,3 +31,13 @@ Admin functionalities include:
 🔸 Add New Products
 
 ⚠️ Secure routes with authentication (e.g., JWT or middleware)
+
+
+## 📸 Screenshots:
+
+![pizzaWizza2](https://github.com/user-attachments/assets/5b0376ed-b1a0-4167-86f5-768590a17747)
+
+![pizzaWizza4](https://github.com/user-attachments/assets/8a6833fb-817a-46e9-ace6-dfb4752dcb44)
+
+
+
